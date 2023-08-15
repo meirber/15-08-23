@@ -14,11 +14,13 @@ const data = [{
     password: '13572469'
 }]
 
+const { log } = require('console')
 const express = require('express')
 const app = express()
 const port = 3001
+app.use(express.json())
 
-app.get('/', (req, res) => {
+app.get ('/', (req, res) => {
     res.send(data)
 })
 
@@ -28,8 +30,11 @@ app.get('/:id', (req, res) => {
 })
 
 app.post('/',(req, res)=>{
-  const newUser= JSON.parse(req.body);
+    console.log(123);
+  const newUser= req.body
   data.push(newUser)
+  res.send("amit")
+  console.log(data);
 })
 
 app.listen(port, () => {
