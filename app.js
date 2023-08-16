@@ -30,7 +30,6 @@ schema
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    console.log("amit");
     res.send(data);
 })
 
@@ -89,11 +88,8 @@ app.post('/User-login', (req, res) => {
     else {
         bcrypt.compare(newUser.password, a.password)
             .then(passwordHash => {
-                passwordHash
-                return passwordHash;
-            })
-            .then(data => {
-                if (data) res.send("The connection was made successfully");
+                const v = passwordHash;
+                if (v) res.send("The connection was made successfully");
                 else res.send("wrong credentials")
             });
     }
