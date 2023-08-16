@@ -5,9 +5,12 @@
   "name": "node",
   "version": "1.0.0",
   "main": "app.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start-dev": "nodemon ./app.js",
     "amit-he-gever": "node ./app.js"
   },
   "author": "",
