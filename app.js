@@ -84,18 +84,20 @@ app.delete('/delete-user/:id', (req, res) => {
 
 app.post('/User-login', (req, res) => {
     const newUser = req.body;
-    data.forEach((element, i) => {
-        if (element.email === newUser.email) {
-            console.log('has email', data[i]);
-            bcrypt.compare(newUser.password, element.password).then(data=>console.log(data))
-        }
-        //  && bcrypt.compare(newUser.password, element.password))
-        // console.log(bcrypt.compare(newUser.password, element.password));
-        // res.send("User is connected");
-    });
-    res.send("wrong credentials");
-}
-);
+    const a = data.find(element => element.email === newUser.email);
+    if (a === undefined) res.send("wrong credentials");
+    else {
+        bcrypt.compare(newUser.password, a.password)
+            .then(passwordHash => {
+                passwordHash
+                return passwordHash;
+            })
+            .then(data => {
+                if (data) res.send("The connection was made successfully");
+                else res.send("wrong credentials")
+            });
+    }
+})
 
 async function passwordSecurity(password) {
     const saltRounds = 10;
